@@ -1,98 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edgescape Navigator - Homepage</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #eef1f5;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
         }
 
         .container {
+            background-color: #ffffff;
+            max-width: 600px;
+            width: 100%;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             text-align: center;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
         }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
         }
 
-        .search-form {
-            margin-bottom: 20px;
+        h3 {
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 30px;
         }
 
-        /* Style for text input and submit button */
-        input[type="text"], select {
+        .search-form form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        select, input[type="text"], input[type="submit"] {
             padding: 10px;
             font-size: 1em;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
-        /* Adjust the width for input and select */
-        input[type="text"] {
-            width: 300px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            transition: all 0.2s ease-in-out;
         }
 
         select {
-            width: 160px; /* Adjust the width to match the dropdown size */
-            margin-right: 10px; /* Space between dropdown and input */
+            width: 150px;
+            background-color: #f0f8ff;
+            border-color: #4CAF50;
             cursor: pointer;
-            text-align: center;
-            background-color: #f0f8ff; /* Light blue background */
-            border-color: #4CAF50; /* Green border color */
+        }
+
+        input[type="text"] {
+            width: 60%;
+            min-width: 200px;
         }
 
         input[type="submit"] {
-            padding: 10px 20px;
-            font-size: 1em;
-            margin-left: 10px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            cursor: pointer;
             background-color: #4CAF50;
             color: white;
+            border: none;
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
         }
 
         .links {
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         .links a {
-            margin: 0 10px;
-            text-decoration: none;
+            margin: 6px 12px;
             color: #4CAF50;
-            font-size: 1.1em;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
         }
 
         .links a:hover {
+            color: #388e3c;
             text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 500px) {
+            input[type="text"] {
+                width: 100%;
+            }
+            select, input[type="submit"] {
+                width: 100%;
+            }
+            .links a {
+                display: inline-block;
+                margin: 6px 8px;
+            }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <img width="128px" height="128px" src="logo.png">
+        <img src="logo.png" alt="Edgescape Logo" />
         <h1>Edgescape Navigator</h1>
         <h3>Start exploring the web now!</h3>
-        
-        <!-- Search form with selector -->
+
         <div class="search-form">
             <form id="searchForm" action="https://www.google.com/search" method="get">
                 <select id="searchEngine" onchange="updatePlaceholder()">
@@ -106,12 +140,11 @@
                     <option value="wikipedia">Wikipedia</option>
                     <option value="yahoo">Yahoo</option>
                 </select>
-                <input type="text" id="searchQuery" name="q" placeholder="Search with Google">
-                <input type="submit" value="Search">
+                <input type="text" id="searchQuery" name="q" placeholder="Search with Google" />
+                <input type="submit" value="Search" />
             </form>
         </div>
 
-        <!-- Links -->
         <div class="links">
             <a href="https://www.youtube.com">YouTube</a>
             <a href="https://www.wikipedia.org">Wikipedia</a>
@@ -125,79 +158,43 @@
             <a href="https://medlineplus.gov/">MedlinePlus</a>
             <a href="https://www.merriam-webster.com/">Merriam-Webster</a>
             <a href="https://www.accuweather.com/">AccuWeather</a>
-            <br><br><br>
+        </div>
+
+        <div class="footer">
             <p>
-              Edgescape Navigator Startpage
-              <br>
-              Version 1.4
-              <br>
-            ©TheDoggyBrad Software Labs. All Rights Reserved.  
+                Edgescape Navigator Startpage<br />
+                Version 1.5<br />
+                &copy; TheDoggyBrad Software Labs. All Rights Reserved.
             </p>
         </div>
     </div>
 
     <script>
-        // Function to update the placeholder based on selected search engine
         function updatePlaceholder() {
             const searchEngine = document.getElementById("searchEngine").value;
             const searchQuery = document.getElementById("searchQuery");
+            const form = document.getElementById("searchForm");
 
-            switch (searchEngine) {
-                case "google":
-                    searchQuery.placeholder = "Search with Google";
-                    document.getElementById("searchForm").action = "https://www.google.com/search";
-                    document.getElementById("searchQuery").name = "q"; 
-                    break;
-                case "duckduckgo":
-                    searchQuery.placeholder = "Search with DuckDuckGo";
-                    document.getElementById("searchForm").action = "https://duckduckgo.com/";
-                    document.getElementById("searchQuery").name = "q"; 
-                    break;
-                case "bing":
-                    searchQuery.placeholder = "Search with Bing";
-                    document.getElementById("searchForm").action = "https://www.bing.com/search";
-                    document.getElementById("searchQuery").name = "q"; 
-                    break;
-                case "searxng":
-                    searchQuery.placeholder = "Search with SearXNG";
-                    document.getElementById("searchForm").action = "https://farside.link/searxng/search";
-                    document.getElementById("searchQuery").name = "q";
-                    break;
-                case "wikipedia":
-                    searchQuery.placeholder = "Search with Wikipedia";
-                    document.getElementById("searchForm").action = "https://en.wikipedia.org/w/index.php";
-                    document.getElementById("searchQuery").name = "search"; 
-                    break;
-                case "ecosia":
-                    searchQuery.placeholder = "Search with Ecosia";
-                    document.getElementById("searchForm").action = "https://www.ecosia.org/search";
-                    document.getElementById("searchQuery").name = "q"; 
-                    break;
-                case "brave":
-                    searchQuery.placeholder = "Search with Brave";
-                    document.getElementById("searchForm").action = "https://search.brave.com/search";
-                    document.getElementById("searchQuery").name = "q"; 
-                    break;
-                case "lycos":
-                    searchQuery.placeholder = "Search with Lycos";
-                    document.getElementById("searchForm").action = "https://search.lycos.com/web/";
-                    document.getElementById("searchQuery").name = "q"; 
-                    break;
-                case "yahoo":
-                    searchQuery.placeholder = "Search with Yahoo";
-                    document.getElementById("searchForm").action = "https://search.yahoo.com/search";
-                    document.getElementById("searchQuery").name = "p"; 
-                    break;
-                default:
-                    searchQuery.placeholder = "Search with Google";
-                    document.getElementById("searchForm").action = "https://www.google.com/search";
-                    document.getElementById("searchQuery").name = "q"; // Default to Google
-            }
+            const engines = {
+                google: ["https://www.google.com/search", "q", "Search with Google"],
+                duckduckgo: ["https://duckduckgo.com/", "q", "Search with DuckDuckGo"],
+                bing: ["https://www.bing.com/search", "q", "Search with Bing"],
+                searxng: ["https://farside.link/searxng/search", "q", "Search with SearXNG"],
+                wikipedia: ["https://en.wikipedia.org/w/index.php", "search", "Search Wikipedia"],
+                ecosia: ["https://www.ecosia.org/search", "q", "Search with Ecosia"],
+                brave: ["https://search.brave.com/search", "q", "Search with Brave"],
+                lycos: ["https://search.lycos.com/web/", "q", "Search with Lycos"],
+                yahoo: ["https://search.yahoo.com/search", "p", "Search with Yahoo"]
+            };
+
+            const [action, name, placeholder] = engines[searchEngine] || engines.google;
+
+            form.action = action;
+            searchQuery.name = name;
+            searchQuery.placeholder = placeholder;
         }
 
-        // Call updatePlaceholder on load to set the initial action
         window.onload = updatePlaceholder;
     </script>
-
 </body>
 </html>
