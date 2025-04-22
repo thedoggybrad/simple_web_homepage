@@ -321,6 +321,11 @@
     function addLink() {
         const name = document.getElementById('newLinkName').value;
         const url = document.getElementById('newLinkUrl').value;
+
+	 if (!/^https?:\/\/.+\..+/.test(url)) {
+        alert("Please enter a valid URL starting with http:// or https://");
+        return;
+    }
         if (name && url) {
             displayLink(name, url);
             saveLinks();
