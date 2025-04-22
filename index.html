@@ -6,6 +6,7 @@
     <title>Edgescape Navigator - Homepage</title>
     <link rel="icon" type="image/png" href="logo.png" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -46,8 +47,8 @@
 
         .search-form form {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
             gap: 10px;
         }
 
@@ -77,6 +78,7 @@
             border: none;
             padding: 10px 16px;
             cursor: pointer;
+            width: auto; 
         }
 
         input[type="submit"]:hover {
@@ -85,19 +87,48 @@
 
         .links {
             margin-top: 30px;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .links a {
+        .link-item {
             margin: 6px 12px;
+            display: flex;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 8px 12px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .link-item a {
             color: #4CAF50;
             text-decoration: none;
             font-weight: 500;
+            margin-right: 8px;
             transition: color 0.2s ease;
         }
 
-        .links a:hover {
+        .link-item a:hover {
             color: #388e3c;
             text-decoration: underline;
+        }
+
+        .remove-button {
+            background-color: #ff5f5f;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: none; 
+        }
+
+        .remove-button:hover {
+            background-color: #e04e4e;
         }
 
         .footer {
@@ -107,11 +138,75 @@
             line-height: 1.6;
         }
 
+        .add-link-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; 
+            margin-bottom: 20px; 
+        }
+
+        .add-link-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .add-link-button:hover {
+            background-color: #45a049;
+        }
+
+        .add-link-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .add-link-popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .add-link-popup input {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .add-link-popup button {
+            padding: 10px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .add-link-popup button:hover {
+            background-color: #45a049;
+        }
+
         @media (max-width: 500px) {
             input[type="text"] {
                 width: 100%;
             }
-            select, input[type="submit"] {
+            select, input[type="submit"], .add-link-form input {
                 width: 100%;
             }
             .links a {
@@ -145,19 +240,21 @@
             </form>
         </div>
 
-        <div class="links">
-            <a href="https://www.youtube.com">YouTube</a>
-            <a href="https://www.wikipedia.org">Wikipedia</a>
-            <a href="https://www.reddit.com">Reddit</a>
-            <a href="https://chatgpt.com">ChatGPT</a><br>
-            <a href="https://www.facebook.com">Facebook</a>
-            <a href="https://www.instagram.com">Instagram</a>
-            <a href="https://x.com">X (Twitter)</a>
-            <a href="https://mail.google.com">Gmail</a><br>
-            <a href="https://www.britannica.com/">Britannica</a>
-            <a href="https://medlineplus.gov/">MedlinePlus</a>
-            <a href="https://www.merriam-webster.com/">Merriam-Webster</a>
-            <a href="https://www.accuweather.com/">AccuWeather</a>
+        <div class="links" id="linksContainer">
+        </div>
+        
+        <div class="add-link-button-container">
+            <button class="add-link-button" onclick="showAddLinkPopup()">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        <div class="add-link-popup" id="addLinkPopup">
+            <div class="add-link-popup-content">
+                <h3>Add a New Link</h3>
+                <input type="text" id="newLinkName" placeholder="Enter link name" />
+                <input type="text" id="newLinkUrl" placeholder="Enter link URL" />
+                <button onclick="addLink()">Add Link</button>
+            </div>
         </div>
 
         <div class="footer">
@@ -169,32 +266,96 @@
         </div>
     </div>
 
-    <script>
-        function updatePlaceholder() {
-            const searchEngine = document.getElementById("searchEngine").value;
-            const searchQuery = document.getElementById("searchQuery");
-            const form = document.getElementById("searchForm");
-
-            const engines = {
-                google: ["https://www.google.com/search", "q", "Search with Google"],
-                duckduckgo: ["https://duckduckgo.com/", "q", "Search with DuckDuckGo"],
-                bing: ["https://www.bing.com/search", "q", "Search with Bing"],
-                searxng: ["https://farside.link/searxng/search", "q", "Search with SearXNG"],
-                wikipedia: ["https://en.wikipedia.org/w/index.php", "search", "Search Wikipedia"],
-                ecosia: ["https://www.ecosia.org/search", "q", "Search with Ecosia"],
-                brave: ["https://search.brave.com/search", "q", "Search with Brave"],
-                lycos: ["https://search.lycos.com/web/", "q", "Search with Lycos"],
-                yahoo: ["https://search.yahoo.com/search", "p", "Search with Yahoo"]
-            };
-
-            const [action, name, placeholder] = engines[searchEngine] || engines.google;
-
-            form.action = action;
-            searchQuery.name = name;
-            searchQuery.placeholder = placeholder;
+   <script>
+    function loadLinks() {
+        const cookies = document.cookie.split(';');
+        const links = cookies.find(cookie => cookie.startsWith('links='));
+        if (links) {
+            const linkData = JSON.parse(decodeURIComponent(links.split('=')[1]));
+            linkData.forEach(link => {
+                displayLink(link.name, link.url);
+            });
         }
+    }
+       
+    function saveLinks() {
+        const links = [];
+        document.querySelectorAll('.link-item').forEach(item => {
+            const name = item.querySelector('a').innerText;
+            const url = item.querySelector('a').href;
+            links.push({ name, url });
+        });
+        document.cookie = `links=${encodeURIComponent(JSON.stringify(links))}; path=/; max-age=3155760000`;
+    }
+       
+    function displayLink(name, url) {
+        const container = document.getElementById('linksContainer');
+        const linkItem = document.createElement('div');
+        linkItem.classList.add('link-item');
+        linkItem.innerHTML = `
+            <a href="${url}" target="_blank">${name}</a>
+            <button class="remove-button">Remove</button>
+        `;
+        linkItem.oncontextmenu = function(event) {
+            event.preventDefault();
+            const removeButton = linkItem.querySelector('.remove-button');
+            removeButton.style.display = 'inline-block';
+        };
+        linkItem.querySelector('.remove-button').onclick = function() {
+            linkItem.remove();
+            saveLinks();
+        };
+        container.appendChild(linkItem);
+    }
+    function showAddLinkPopup() {
+        document.getElementById('addLinkPopup').style.display = 'flex';
+    }
 
-        window.onload = updatePlaceholder;
-    </script>
+    function addLink() {
+        const name = document.getElementById('newLinkName').value;
+        const url = document.getElementById('newLinkUrl').value;
+        if (name && url) {
+            displayLink(name, url);
+            saveLinks();
+            document.getElementById('addLinkPopup').style.display = 'none'; 
+            document.getElementById('newLinkName').value = '';
+            document.getElementById('newLinkUrl').value = '';
+        }
+    }
+    window.onclick = function(event) {
+        const popup = document.getElementById('addLinkPopup');
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    }
+
+    window.onload = function() {
+        loadLinks();
+    };
+
+    function updatePlaceholder() {
+        const searchEngine = document.getElementById("searchEngine").value;
+        const searchQuery = document.getElementById("searchQuery");
+        const form = document.getElementById("searchForm");
+
+        const engines = {
+            google: ["https://www.google.com/search", "q", "Search with Google"],
+            duckduckgo: ["https://duckduckgo.com/", "q", "Search with DuckDuckGo"],
+            bing: ["https://www.bing.com/search", "q", "Search with Bing"],
+            searxng: ["https://farside.link/searxng/search", "q", "Search with SearXNG"],
+            wikipedia: ["https://en.wikipedia.org/w/index.php", "search", "Search Wikipedia"],
+            ecosia: ["https://www.ecosia.org/search", "q", "Search with Ecosia"],
+            brave: ["https://search.brave.com/search", "q", "Search with Brave"],
+            lycos: ["https://search.lycos.com/web/", "q", "Search with Lycos"],
+            yahoo: ["https://search.yahoo.com/search", "p", "Search with Yahoo"]
+        };
+
+        const [action, name, placeholder] = engines[searchEngine] || engines.google;
+        form.action = action;
+        searchQuery.name = name;
+        searchQuery.placeholder = placeholder;
+    };
+</script>
+
 </body>
 </html>
