@@ -256,18 +256,20 @@
             </button>
         </div>
         <div class="add-link-popup" id="addLinkPopup">
-            <div class="add-link-popup-content">
-                <h3>Add a New Link</h3>
-                <input type="text" id="newLinkName" placeholder="Enter link name" />
-                <input type="text" id="newLinkUrl" placeholder="Enter link URL" />
-                <button onclick="addLink()">Add Link</button>
-            </div>
+   <div class="add-link-popup-content">
+    	<h3>Add a New Link</h3>
+  	  <div id="errorMessage" style="color: red; margin-bottom: 10px; display: none;"></div>
+   	 <input type="text" id="newLinkName" placeholder="Enter link name" />
+   	 <input type="text" id="newLinkUrl" placeholder="Enter link URL" />
+   	 <button onclick="addLink()">Add Link</button>
+   </div>
+
         </div>
 
         <div class="footer">
             <p>
                 Edgescape Navigator Startpage<br />
-                Version 2.1<br />
+                Version 2.2<br />
                 &copy;TheDoggyBrad Software Labs. All Rights Reserved.
             </p>
         </div>
@@ -322,10 +324,14 @@
         const name = document.getElementById('newLinkName').value;
         const url = document.getElementById('newLinkUrl').value;
 
-	 if (!/^https?:\/\/.+\..+/.test(url)) {
-        alert("Please enter a valid URL starting with http:// or https://");
+    if (!/^https?:\/\/.+\..+/.test(url)) {
+        errorMessage.textContent = "Please enter a valid URL starting with http:// or https://";
+        errorMessage.style.display = "block";
         return;
+    } else {
+        errorMessage.style.display = "none";
     }
+
         if (name && url) {
             displayLink(name, url);
             saveLinks();
