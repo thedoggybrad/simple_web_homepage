@@ -269,7 +269,7 @@
         <div class="footer">
             <p>
                 Edgescape Navigator Startpage<br />
-                Version 2.2<br />
+                Version 2.1<br />
                 &copy;TheDoggyBrad Software Labs. All Rights Reserved.
             </p>
         </div>
@@ -348,8 +348,15 @@
     }
 
     window.onload = function() {
-        loadLinks();
-    };
+    loadLinks();
+
+    document.getElementById("searchQuery").addEventListener("keydown", function(event) {
+        if (event.key === "Enter" && event.shiftKey) {
+            event.preventDefault();
+        }
+    });
+};
+
 
     function updatePlaceholder() {
         const searchEngine = document.getElementById("searchEngine").value;
