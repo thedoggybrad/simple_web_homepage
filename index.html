@@ -267,7 +267,7 @@
 
     <div class="footer">
         Edgescape Navigator Browser Homepage<br>
-        Version 2.5<br>
+        Version 2.6<br>
         © TheDoggyBrad Software Labs
     </div>
 </div>
@@ -319,6 +319,13 @@ function loadLinks() {
     if (links) {
         const data = JSON.parse(decodeURIComponent(links.split("=")[1]));
         data.forEach(link => displayLink(link.name, link.url));
+    }
+}
+
+window.onclick = function(event) {
+    const popup = document.getElementById('addLinkPopup');
+    if (event.target === popup) {
+    	popup.style.display = 'none';
     }
 }
 
@@ -374,4 +381,5 @@ window.onload = loadLinks;
 
 </body>
 </html>
+
 
