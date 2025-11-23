@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        body {
+                body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             background-color: #eef1f5;
@@ -222,184 +222,154 @@
         }
     </style>
 </head>
+
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <div class="container">
-        <img src="logo.png" alt="Edgescape Logo" />
-        <h1>Edgescape Navigator</h1>
-        <h3>Start exploring the web now!</h3>
+<div class="container">
+    <img src="logo.png" alt="Edgescape Logo" />
+    <h1>Edgescape Navigator</h1>
+    <h3>Start exploring the web now!</h3>
 
-        <div class="search-form">
-            <form id="searchForm" action="https://www.google.com/search" method="get">
-                <select id="searchEngine" onchange="updatePlaceholder()">
-                    <option value="bing">Bing</option>
-                    <option value="brave">Brave</option>
-                    <option value="duckduckgo">DuckDuckGo</option>
-                    <option value="ecosia">Ecosia</option>
-                    <option value="google" selected>Google</option>
-                    <option value="lycos">Lycos</option>
-                    <option value="searxng">SearXNG</option>
-                    <option value="wikipedia">Wikipedia</option>
-                    <option value="yahoo">Yahoo</option>
-                </select>
-                <input type="text" id="searchQuery" name="q" placeholder="Search with Google" autocomplete="off" />
-                <input type="submit" value="Search" />
-            </form>
-        </div>
+    <!-- Search Form -->
+    <div class="search-form">
+        <form id="searchForm" method="get">
+            <select id="searchEngine" onchange="updatePlaceholder()">
+                <option value="bing">Bing</option>
+                <option value="brave">Brave</option>
+                <option value="duckduckgo">DuckDuckGo</option>
+                <option value="ecosia">Ecosia</option>
+                <option value="google">Google</option>
+                <option value="lycos">Lycos</option>
+                <option value="searxng">SearXNG</option>
+                <option value="wikipedia">Wikipedia</option>
+                <option value="yahoo">Yahoo</option>
+            </select>
 
-        <div class="links" id="linksContainer">
-        </div>
-        
-        <div class="add-link-button-container">
-            <button class="add-link-button" onclick="showAddLinkPopup()">
-                <i class="fas fa-plus"></i>
-            </button>
-        </div>
-        <div class="add-link-popup" id="addLinkPopup">
-   <div class="add-link-popup-content">
-    	<h3>Add a New Link</h3>
-  	  <div id="errorMessage" style="color: red; margin-bottom: 10px; display: none;"></div>
-   	 <input type="text" id="newLinkName" placeholder="Enter link name" />
-   	 <input type="text" id="newLinkUrl" placeholder="Enter link URL" />
-   	 <button onclick="addLink()">Add Link</button>
-   </div>
+            <input type="text" id="searchQuery" placeholder="Search" autocomplete="off" />
+            <input type="submit" value="Search" />
+        </form>
+    </div>
 
-        </div>
+    <div id="linksContainer" class="links"></div>
 
-        <div class="footer">
-            <p>
-                Edgescape Navigator Browser Homepage<br />
-                Version 2.5<br />
-                &copy;TheDoggyBrad Software Labs. All Rights Reserved.
-            </p>
+    <div class="add-link-button-container">
+        <button class="add-link-button" onclick="showAddLinkPopup()">+</button>
+    </div>
+
+    <div class="add-link-popup" id="addLinkPopup">
+        <div class="add-link-popup-content">
+            <h3>Add a New Link</h3>
+            <div id="errorMessage" style="color:red;display:none"></div>
+            <input type="text" id="newLinkName" placeholder="Name">
+            <input type="text" id="newLinkUrl" placeholder="URL">
+            <button onclick="addLink()">Add Link</button>
         </div>
     </div>
 
-   <script>
-    function loadLinks() {
-        const cookies = document.cookie.split(';');
-        const links = cookies.find(cookie => cookie.startsWith('links='));
-        if (links) {
-            const linkData = JSON.parse(decodeURIComponent(links.split('=')[1]));
-            linkData.forEach(link => {
-                displayLink(link.name, link.url);
-            });
-        }
-    }
-       
-    function saveLinks() {
-        const links = [];
-        document.querySelectorAll('.link-item').forEach(item => {
-            const name = item.querySelector('a').innerText;
-            const url = item.querySelector('a').href;
-            links.push({ name, url });
-        });
-        document.cookie = `links=${encodeURIComponent(JSON.stringify(links))}; path=/; max-age=3155760000`;
-    }
-       
-    function displayLink(name, url) {
-        const container = document.getElementById('linksContainer');
-        const linkItem = document.createElement('div');
-        linkItem.classList.add('link-item');
-        linkItem.innerHTML = `
-            <a href="${url}">${name}</a>
-            <button class="remove-button">Remove</button>
-        `;
-        linkItem.oncontextmenu = function(event) {
-            event.preventDefault();
-            const removeButton = linkItem.querySelector('.remove-button');
-            removeButton.style.display = 'inline-block';
-        };
-        linkItem.querySelector('.remove-button').onclick = function() {
-            linkItem.remove();
-            saveLinks();
-        };
-        container.appendChild(linkItem);
-    }
-    function showAddLinkPopup() {
-        document.getElementById('addLinkPopup').style.display = 'flex';
+    <div class="footer">
+        Edgescape Navigator Browser Homepage<br>
+        Version 2.5<br>
+        © TheDoggyBrad Software Labs
+    </div>
+</div>
+
+<script>
+const engines = {
+    google: ["https://www.google.com/search", "q", "Search with Google"],
+    duckduckgo: ["https://duckduckgo.com/", "q", "Search with DuckDuckGo"],
+    bing: ["https://www.bing.com/search", "q", "Search with Bing"],
+    searxng: ["https://farside.link/searxng/search", "q", "Search with SearXNG"],
+    wikipedia: ["https://en.wikipedia.org/w/index.php", "search", "Search Wikipedia"],
+    ecosia: ["https://www.ecosia.org/search", "q", "Search with Ecosia"],
+    brave: ["https://search.brave.com/search", "q", "Search with Brave"],
+    lycos: ["https://search.lycos.com/web/", "q", "Search with Lycos"],
+    yahoo: ["https://search.yahoo.com/search", "p", "Search with Yahoo"]
+};
+
+function updatePlaceholder() {
+    const engine = document.getElementById("searchEngine").value;
+    const [action, param, placeholder] = engines[engine];
+
+    const form = document.getElementById("searchForm");
+    const queryInput = document.getElementById("searchQuery");
+
+    form.action = action;
+    queryInput.name = param;
+    queryInput.placeholder = placeholder;
+
+    localStorage.setItem("selectedEngine", engine);
+}
+
+window.addEventListener("load", () => {
+    const dropdown = document.getElementById("searchEngine");
+    const saved = localStorage.getItem("selectedEngine");
+
+    if (saved) {
+        dropdown.value = saved;
+    } else {
+        dropdown.value = "google"; // default on first load
     }
 
-    function addLink() {
-        const name = document.getElementById('newLinkName').value;
-        const url = document.getElementById('newLinkUrl').value;
+    updatePlaceholder();
+});
 
-    if (!/^https?:\/\/.+\..+/.test(url)) {
-        errorMessage.textContent = "Please enter a valid URL starting with http:// or https://";
+
+function loadLinks() {
+    const cookies = document.cookie.split(';');
+    const links = cookies.find(c => c.startsWith("links="));
+    if (links) {
+        const data = JSON.parse(decodeURIComponent(links.split("=")[1]));
+        data.forEach(link => displayLink(link.name, link.url));
+    }
+}
+
+function saveLinks() {
+    const links = [];
+    document.querySelectorAll(".link-item").forEach(item => {
+        const a = item.querySelector("a");
+        links.push({ name: a.textContent, url: a.href });
+    });
+    document.cookie = `links=${encodeURIComponent(JSON.stringify(links))}; path=/; max-age=3155760000`;
+}
+
+function displayLink(name, url) {
+    const div = document.createElement("div");
+    div.classList.add("link-item");
+    div.innerHTML = `<a href="${url}">${name}</a><button class="remove-button">Remove</button>`;
+    div.oncontextmenu = e => {
+        e.preventDefault();
+        div.querySelector(".remove-button").style.display = "inline-block";
+    };
+    div.querySelector(".remove-button").onclick = () => {
+        div.remove();
+        saveLinks();
+    };
+    document.getElementById("linksContainer").appendChild(div);
+}
+
+function showAddLinkPopup() {
+    document.getElementById("addLinkPopup").style.display = "flex";
+}
+
+function addLink() {
+    const name = newLinkName.value;
+    const url = newLinkUrl.value;
+
+    if (!/^https?:\/\//.test(url)) {
+        errorMessage.textContent = "URL must start with http:// or https://";
         errorMessage.style.display = "block";
         return;
-    } else {
-        errorMessage.style.display = "none";
     }
 
-        if (name && url) {
-            displayLink(name, url);
-            saveLinks();
-            document.getElementById('addLinkPopup').style.display = 'none'; 
-            document.getElementById('newLinkName').value = '';
-            document.getElementById('newLinkUrl').value = '';
-        }
-    }
-    window.onclick = function(event) {
-        const popup = document.getElementById('addLinkPopup');
-        if (event.target === popup) {
-            popup.style.display = 'none';
-        }
-    }
+    errorMessage.style.display = "none";
+    displayLink(name, url);
+    saveLinks();
 
+    addLinkPopup.style.display = "none";
+    newLinkName.value = "";
+    newLinkUrl.value = "";
+}
 
-	   
-window.onload = function() {
-    loadLinks();
-
-    document.getElementById("searchQuery").addEventListener("keydown", function(event) {
-        if (event.key === "Enter" && event.shiftKey) {
-            event.preventDefault();
-        }
-    });
-
-	
-    const links = document.querySelectorAll("a");
-    links.forEach(link => {
-        link.addEventListener("click", function(event) {
-            if (event.shiftKey) {
-                event.preventDefault();  
-            }
-        });
-    });
-
-    const searchButton = document.querySelector('input[type="submit"]');
-    searchButton.addEventListener("click", function(event) {
-        if (event.shiftKey) {
-            event.preventDefault();  
-        }
-    });
-};
-	   
-
-
-    function updatePlaceholder() {
-        const searchEngine = document.getElementById("searchEngine").value;
-        const searchQuery = document.getElementById("searchQuery");
-        const form = document.getElementById("searchForm");
-
-        const engines = {
-            google: ["https://www.google.com/search", "q", "Search with Google"],
-            duckduckgo: ["https://duckduckgo.com/", "q", "Search with DuckDuckGo"],
-            bing: ["https://www.bing.com/search", "q", "Search with Bing"],
-            searxng: ["https://farside.link/searxng/search", "q", "Search with SearXNG"],
-            wikipedia: ["https://en.wikipedia.org/w/index.php", "search", "Search Wikipedia"],
-            ecosia: ["https://www.ecosia.org/search", "q", "Search with Ecosia"],
-            brave: ["https://search.brave.com/search", "q", "Search with Brave"],
-            lycos: ["https://search.lycos.com/web/", "q", "Search with Lycos"],
-            yahoo: ["https://search.yahoo.com/search", "p", "Search with Yahoo"]
-        };
-
-        const [action, name, placeholder] = engines[searchEngine] || engines.google;
-        form.action = action;
-        searchQuery.name = name;
-        searchQuery.placeholder = placeholder;
-    };
+window.onload = loadLinks;
 </script>
 
 </body>
