@@ -259,6 +259,7 @@
                 <option value="searxng">SearXNG</option>
                 <option value="wikipedia">Wikipedia</option>
                 <option value="yahoo">Yahoo</option>
+				<option value="youtube">YouTube</option>
             </select>
 
             <input type="text" id="searchQuery" placeholder="Search" autocomplete="off" />
@@ -284,8 +285,7 @@
 
     <div class="footer">
         The Edgescape Navigator Browser Homepage<br>
-		Minor Revision 2026.05.25<br>
-		Version 2025.11.23 (R30.1)<br>
+		Version 2026.05.25 (R31)<br>
         ©TheDoggyBrad Software Labs. All Rights Reserved.
     </div>
 </div>
@@ -300,7 +300,8 @@ const engines = {
     ecosia: ["https://www.ecosia.org/search", "q", "Search with Ecosia"],
     brave: ["https://search.brave.com/search", "q", "Search with Brave"],
     lycos: ["https://search.lycos.com/web/", "q", "Search with Lycos"],
-    yahoo: ["https://search.yahoo.com/search", "p", "Search with Yahoo"]
+    yahoo: ["https://search.yahoo.com/search", "p", "Search with Yahoo"],
+	youtube: ["https://www.youtube.com/results", "search_query", "Search with YouTube"]
 };
 
 function updatePlaceholder() {
