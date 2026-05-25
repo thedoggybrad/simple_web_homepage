@@ -1,3 +1,5 @@
+<img width="128" height="128" alt="android-chrome-512x512" src="https://github.com/user-attachments/assets/4a08dcd7-e7d1-4dad-9823-7b6dccfe4ab6" />
+
 # Simple Web Homepage
 Experience a fast, easy and bloat-free web browsing experience using Simple Web Homepage as your web browser's homepage.
 <br>
