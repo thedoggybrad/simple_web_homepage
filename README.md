@@ -1,4 +1,4 @@
-# Edgescape Navigator Startpage
+# The Edgescape Navigator Homepage
 The homepage used when you open up Edgescape Navigator. This homepage is all remotely fetched by the said software, meaning there is no need for a new release of the browser because the homepage was updated.
 
 ## Management of Operations
