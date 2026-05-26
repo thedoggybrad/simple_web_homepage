@@ -20,7 +20,8 @@ This project has a motto of "The Simple Way to Explore the Web" and it keeps it 
 
 ### Topic 2: Searching
 1.) To search using your preferred search engine select the `dropdown` with `Google ⌄` or `⌄` in it and select your preferred search engine. This selection remains unless you change it.<br>
-2.) To search, type your query on the search box and click the `Search`  button or press `Enter ↵` on your keyboard to search.
+2.) To search, type your query on the search box and click the `Search`  button or press `Enter ↵` on your keyboard to search.<br>
+**For additional search engines not included in the drop down, you may request them to be added using the `Issues` feature of this repository.
 
 ### Topic 3: Customizing the Links
 1.) To add a link, click the `+` button below the search box 
