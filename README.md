@@ -1,9 +1,7 @@
 <img width="128" height="128" alt="logo" src="https://github.com/user-attachments/assets/a891d649-c41f-453a-a07a-50568bb64ea7" />
 
-# Simple Web Homepage
+# Simple Web Homepage (Formerly Edgescape Navigator Homepage)
 A fast and minimal homepage that keeps your browsing simple and clutter-free.
-<br>
-This project is formerly the "Edgescape Navigator Homepage" which is just designed for a single product, but this is now designed to be used by users of all web browsers out there.
 
 ## How to use this as your homepage?
 ### For Chromium Family Browsers
@@ -37,6 +35,9 @@ This includes Firefox, Waterfox, IceCat, and other Firefox-based web browsers.
 6.) Press `Save`<br>
 7.) Go to `about:preferences#home` and configure your homepage to use your new tab page.<br>
 8.) Enjoy!
+
+### For Edgescape Navigator 2.0 onwards
+No action is needed. This is the default homepage of the said web browser.
 
 ### For Other Web Browsers
 Please refer to your web browser's guide on how to change your web browser's homepage/new tab page into:<br>
