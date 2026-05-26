@@ -24,7 +24,7 @@ This project has a motto of "The Simple Way to Explore the Web" and it keeps it 
 **For additional search engines not included in the drop down, you may request them to be added using the `Issues` feature of this repository.
 
 ### Topic 3: Customizing the Links
-1.) To add a link, click the `+` button below the search box 
+1.) To add a link, click the `+` button below the search box<br>
 2.) To remove a link, do a right click (desktop) or long press (mobile) for the `Remove` button to appear. Press the `Remove` button to remove the link.
 
 ### Topic 4: How to use this as your homepage?
