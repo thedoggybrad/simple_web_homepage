@@ -1,7 +1,9 @@
 <img width="128" height="128" alt="logo" src="https://github.com/user-attachments/assets/a891d649-c41f-453a-a07a-50568bb64ea7" />
 
-# Simple Web Homepage (Formerly Edgescape Navigator Homepage)
+# Simple Web Homepage 
 A fast and minimal homepage that keeps your browsing simple and clutter-free.
+<br>
+This is the former "Edgescape Navigator Homepage" project which is focused on my Edgescape Navigator project but this product has evolved that it no longer just fits Edgescape Navigator but other web browsers as well.
 
 ## How to use this as your homepage?
 ### For Chromium Family Browsers
