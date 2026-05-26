@@ -19,7 +19,7 @@ This includes Chromium, Chrome, Microsoft Edge, Brave, Vivaldi, Opera and other 
 [https://thedoggybrad.github.io/simple_web_homepage/](https://thedoggybrad.github.io/simple_web_homepage/)
 <br>
 6.) Press `Save`<br>
-7.) Go to `chrome://settings` in most web browsers and ensure that if you are using the home button that it uses the new tab page as its home page.
+7.) Go to `chrome://settings` in most web browsers and ensure that if you are using the home button that it uses the new tab page as its homepage.
 8.) Enjoy!
 
 ### For Firefox Family Browsers
@@ -37,6 +37,11 @@ This includes Firefox, Waterfox, IceCat, and other Firefox-based web browsers.
 6.) Press `Save`<br>
 7.) Go to `about:preferences#home` and configure your homepage to use your new tab page.<br>
 8.) Enjoy!
+
+### For Other Web Browsers
+Please refer to your web browser's guide on how to change your web browser's homepage/new tab page into:<br>
+[https://thedoggybrad.github.io/simple_web_homepage/](https://thedoggybrad.github.io/simple_web_homepage/)
+
 ## Screenshots
 
 ©TheDoggyBrad Software Labs. All Rights Reserved.
