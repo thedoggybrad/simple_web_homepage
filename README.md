@@ -21,12 +21,14 @@ https://thedoggybrad.github.io/simple_web_homepage/
 This includes Firefox, Waterfox, IceCat, and other Firefox-based web browsers.
 <br>
 1.) Install this add-on from the `Firefox Browser Add-ons Store`:<br>
-https://addons.mozilla.org/en-US/firefox/addon/custom-new-tab-page/
+[https://addons.mozilla.org/en-US/firefox/addon/custom-new-tab-page/](https://addons.mozilla.org/en-US/firefox/addon/custom-new-tab-page/)
+<br>
 2.) Open `Add-ons` from the `Menu (☰)` (or navigate to `about:addons` with the address bar)<br>
 3.) Select `Extensions`<br>
 4.) Select the `Custom New Tab Page` extension → `Options`<br>
 5.) Enter this URL in the `New Tab URL` box:<br>
-https://thedoggybrad.github.io/simple_web_homepage/<br>
+[https://thedoggybrad.github.io/simple_web_homepage/](https://thedoggybrad.github.io/simple_web_homepage/)
+<br>
 6.) Press `Save`<br>
 7.) Enjoy!
 ## Screenshots
